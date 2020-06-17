@@ -4,7 +4,7 @@ class Notation(Enum):
   RAW=0
   ALGEBRAIC=1
 
-def __fenToPiecelist(fen, lambda_map=lambda s: s.upper(), notation_type=Notation.RAW):
+def __fenToPiecelist(fen, lambda_map=lambda s: s, notation_type=Notation.RAW):
   files="abcdefgh"
   whitePiecelist=[]
   blackPiecelist=[]
@@ -30,8 +30,8 @@ def __fenToPiecelist(fen, lambda_map=lambda s: s.upper(), notation_type=Notation
       filecounter+=1
   return (whitePiecelist, blackPiecelist)
  
-def fenToAlgebraicPiecelist(fen, lambda_map=lambda s: s.upper()):
+def fenToAlgebraicPiecelist(fen, lambda_map=lambda s: s):
   return __fenToPieceList(fen, lambda_map=lambda_map, notation_type=Notation.ALGEBRAIC)
 
-def fenToRawPiecelist(fen, lambda_map=lambda s: s.upper()):
+def fenToRawPiecelist(fen, lambda_map=lambda s: s):
   return __fenToPieceList(fen, lambda_map=lambda_map, notation_type=Notation.RAW)

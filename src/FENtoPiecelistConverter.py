@@ -31,7 +31,7 @@ def __fenToPiecelist(fen, lambda_map=lambda s: s, notation_type=Notation.RAW):
   return (whitePiecelist, blackPiecelist)
  
 def fenToAlgebraicPiecelist(fen, lambda_map=lambda s: s):
-  return __fenToPieceList(fen, lambda_map=lambda_map, notation_type=Notation.ALGEBRAIC)
+  return __fenToPiecelist(fen, lambda_map=lambda_map, notation_type=Notation.ALGEBRAIC)
 
 def fenToRawPiecelist(fen, lambda_map=lambda s: s):
-  return __fenToPieceList(fen, lambda_map=lambda_map, notation_type=Notation.RAW)
+  return __fenToPiecelist(fen, lambda_map=lambda_map, notation_type=Notation.RAW)

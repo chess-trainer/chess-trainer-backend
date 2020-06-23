@@ -1,0 +1,10 @@
+class User:
+    #This class defines user attributes
+
+    def __init__(self, id, handle, password, email, puzzle, puzzle_ratings):
+        self.id = id
+        self.handle = handle
+        self.password = password
+        self.email = email
+        self.puzzle = puzzle
+        self.puzzle_ratings = puzzle_ratings

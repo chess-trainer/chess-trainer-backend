@@ -1,0 +1,16 @@
+import sqlite3
+
+conn = sqlite3.connect('user.db')
+
+cursor = conn.cursor()
+
+cursor.execute("""CREATE TABLE puzzles (
+                id int,
+                fen text,
+                rating int,
+                solution text
+                )""")
+
+conn.commit()
+
+conn.close()

@@ -1,0 +1,8 @@
+class Puzzle:
+    #This class defines puzzle attributes
+
+    def __init__(self, id, fen, rating, solution):
+        self.id = id
+        self.fen = fen
+        self.rating = rating
+        self.solution = solution

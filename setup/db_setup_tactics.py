@@ -8,4 +8,4 @@ def create_tactics(cursor):
   except:
     pass
 
-db_handler.connect("tactics.db", create_tactics)
+db_setup_handler.connect("tactics.db", create_tactics)

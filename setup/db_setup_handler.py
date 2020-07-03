@@ -8,4 +8,3 @@ def connect(db_name, *argv):
     arg(c)
   conn.commit()
   c.close()
-~           

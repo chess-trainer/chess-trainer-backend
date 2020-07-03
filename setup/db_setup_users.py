@@ -15,4 +15,4 @@ def create_user_stats(cursor):
   except:
     pass
 
-db_handler.connect("users.db", create_users, create_user_stats)
+db_setup_handler.connect("users.db", create_users, create_user_stats)

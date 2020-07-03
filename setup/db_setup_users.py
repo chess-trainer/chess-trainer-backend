@@ -11,7 +11,8 @@ def create_users(cursor):
 def create_user_stats(cursor):
   try:
     cursor.execute("""CREATE TABLE user_stats
-                  (id INTEGER, visual_tactics INTEGER)""")
+                  (id INTEGER, 
+                   visual_tactics_rating INTEGER)""")
   except:
     pass
 

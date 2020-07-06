@@ -21,7 +21,7 @@ problems=[]
 page = requests.get('https://www.chess.com/puzzles/problems?page=1')
 soup = BeautifulSoup(page.content, 'html.parser')
 pagemax = soup.find(id='view-tactics-problems').get('data-total-pages')
-for pagenum in range(1, 2): #pagemax + 1):
+for pagenum in range(1, pagemax + 1):
     if pagenum!=1:
         page = requests.get('https://www.chess.com/puzzles/problems?page=' + str(pagenum))
         soup = BeautifulSoup(page.content, 'html.parser')

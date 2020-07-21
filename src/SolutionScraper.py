@@ -24,7 +24,11 @@ def urlToSolution(driver,url):
     soup = BeautifulSoup(page, 'html.parser')
     problemhtml = soup.find(id="puzzle-features")
     solutionData=problemhtml.get('data-puzzle')
-#This regular expression should work but it isn't \[FULL \\\"(.+?)\\\"\]
+#This regular expression,\[FULL \\\"(.+?)\\\"\], should work but isn't 
 #so substring is a ghetto fix
-    solution = re.search("\[FULL (.+?)\"\]", solutionData).group(1)[2:-1]
+    try: 
+        solution = re.search("\[FULL (.+?)\"\]", solutionData).group(1)[2:-1]
+    except:
+#again (1\. .+)\\n\d" should work but isn't
+        solution = re.search("(1\. .+)", solutionData).group(1)[0:-11]
     return solution

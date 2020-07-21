@@ -39,4 +39,5 @@ for pagenum in range(1, int(pagemax) + 1):
         url=attributes[0].get('href')
         solution = SolutionScraper.urlToSolution(driver,url)
         problems.append(problem(fen,attributes,url,solution))
+driver.close()
 

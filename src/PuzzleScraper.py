@@ -5,7 +5,7 @@ from FENtoPiecelistConverter import fenToAlgebraicPiecelist
 import SolutionScraper
 
 class problem:
-    def __init__(self, fen, attributes,url):
+    def __init__(self, fen, attributes,url,solution):
         self.FEN = fen
         self.algWhitePiecelist, self.algBlackPieceList = fenToAlgebraicPiecelist(fen, lambda_map=lambda s: s)
         self.ID = int(attributes[0].text.strip())
@@ -16,14 +16,15 @@ class problem:
         self.AvgTime = attributes[5].text.strip()
         self.PlayAsColor = attributes[6].text.strip()
         self.URL= url
+        self.Solution=solution
     
         
 problems=[]
 page = requests.get('https://www.chess.com/puzzles/problems?page=1')
 soup = BeautifulSoup(page.content, 'html.parser')
 pagemax = soup.find(id='view-tactics-problems').get('data-total-pages')
-SolutionScraper.login()
-for pagenum in range(1, pagemax + 1):
+driver = SolutionScraper.login()
+for pagenum in range(1, int(pagemax) + 1):
     if pagenum!=1:
         page = requests.get('https://www.chess.com/puzzles/problems?page=' + str(pagenum))
         soup = BeautifulSoup(page.content, 'html.parser')
@@ -36,5 +37,6 @@ for pagenum in range(1, pagemax + 1):
         #The attributes are id, Rating, Attempts, PassPercent, NumMoves, AvgTime, PlayAsColor
         attributes = problemhtml.find_all('a')
         url=attributes[0].get('href')
-        problems.append(problem(fen,attributes,url))
+        solution = SolutionScraper.urlToSolution(driver,url)
+        problems.append(problem(fen,attributes,url,solution))
 

@@ -2,11 +2,12 @@ from bs4 import BeautifulSoup
 import requests
 import re
 from FENtoPiecelistConverter import fenToAlgebraicPiecelist
+import SolutionScraper
 
 class problem:
     def __init__(self, fen, attributes,url):
         self.FEN = fen
-        self.whitePiecelist, self.blackPieceList = fenToAlgebraicPiecelist(fen)
+        self.algWhitePiecelist, self.algBlackPieceList = fenToAlgebraicPiecelist(fen, lambda_map=lambda s: s)
         self.ID = int(attributes[0].text.strip())
         self.Rating = int(attributes[1].text.strip())
         self.Attempts = int(attributes[2].text.strip())
@@ -21,6 +22,7 @@ problems=[]
 page = requests.get('https://www.chess.com/puzzles/problems?page=1')
 soup = BeautifulSoup(page.content, 'html.parser')
 pagemax = soup.find(id='view-tactics-problems').get('data-total-pages')
+SolutionScraper.login()
 for pagenum in range(1, pagemax + 1):
     if pagenum!=1:
         page = requests.get('https://www.chess.com/puzzles/problems?page=' + str(pagenum))

@@ -16,5 +16,3 @@ elif args.fen_to_piece_list:
   fen_tests.test_all()
 elif args.url_to_solution:
   solution_tests.test_all()
-
-solution_tests.test_all()
